@@ -100,7 +100,7 @@ fraud-detection-project/
 
 1. 📥 Clone the repository:
    ```bash
-   git clone https://github.com/Anj2307/SOI_project.git
+   git clone https://github.com/Anj2307/fraud_detect.git
    cd fraud_detect
    ```
 
