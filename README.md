@@ -101,7 +101,7 @@ fraud-detection-project/
 1. 📥 Clone the repository:
    ```bash
    git clone https://github.com/Anj2307/SOI_project.git
-   cd SOI_project
+   cd fraud_detect
    ```
 
 2. 🔧 Install dependencies:
