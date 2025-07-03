@@ -1,0 +1,1 @@
+{"payment_type": {"AA": 0, "AB": 1, "AC": 2, "AD": 3, "AE": 4}, "employment_status": {"CA": 0, "CB": 1, "CC": 2, "CD": 3, "CE": 4, "CF": 5, "CG": 6}, "housing_status": {"BA": 0, "BB": 1, "BC": 2, "BD": 3, "BE": 4, "BF": 5, "BG": 6}, "source": {"INTERNET": 0, "TELEAPP": 1}, "device_os": {"linux": 0, "macintosh": 1, "other": 2, "windows": 3, "x11": 4}}
