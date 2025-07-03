@@ -1,9 +1,10 @@
 
-# 🕵️‍♂️ Fraud Detection Data Analysis 🧠📊
+# 🕵️‍♂️ Fraud Detection Model 🧠📊
 
-Welcome to a complete exploratory data analysis (EDA) project aimed at uncovering fraud patterns from financial transaction data. This work focuses on behavioral, temporal, and technical factors that correlate with fraudulent activity.
+Welcome to a complete exploratory data analysis (EDA) project aimed at uncovering fraud patterns from financial transaction data. This works on differnet parameters of fraud person. In this project I create Machine learning model to predict fraud automatically
 
 ---
+# 📊 Data Analysis
 
 ## 🗂️ Dataset Overview
 
@@ -72,27 +73,60 @@ Welcome to a complete exploratory data analysis (EDA) project aimed at uncoverin
 🖼️ All charts are embedded in [`data_analysis.ipynb`](./data_analysis.ipynb)
 
 ---
+## 🧱 Feature Engineering
 
+We enhanced the dataset to better represent risk factors:
+
+### 1: 🏠 Address Stability
+
+- Replaced `-1` in `prev_address_months_count` and `current_address_months_count`  with median of respective columns
+
+### 2: 💳 Encoded Categorical Features
+
+- Label-encoded: `payment_type`, `employment_type`, `device_os`,`housing_status` etc.
+- Saved mappings to `mappings.json`
+
+### 3: 🚀 Velocity Risk Features
+
+- Standardized and log-transformed: `velocity_6h`, `velocity_8h`, `velocity_1w`
+- Created `velocity_risk_score` with `weights` saved to `weight_map(2).json`.
+
+### 4: 📍 Standerdize the data
+
+- Transformed: `Data is transformed or scaled in all categories`
+### 5: 📐 Create test and train datasets for model creation
+
+- `Have created train_test_split data`
+---
+All feature engineering code are embedded in [`feature engineering`](./feature_engineering.ipynb)
 ## 📁 Project Structure
 
 ```
-fraud-detection-project/
-├── data/                      # Sample CSVs or ignored original data
-├── plots/                     # Saved figures from EDA
-├── data_analysis.ipynb        # Main notebook
-├── README.md                  # You’re reading this
-├── requirements.txt           # Dependencies
-└── .gitignore                 # Files to exclude
+fraud_detect/
+├── data/
+│   └── SOI_2025_Dataset.csv
+├── notebooks/
+│   ├── 01_data_analysis.ipynb
+│   ├── 02_feature_engineering.ipynb
+├── mappings/
+│   ├── mappings.json
+│   └── weight_map(2).json
+├── plots/
+├── requirements.txt
+├── README.md
+└── .gitignore
 ```
+
 
 ---
 
 ## ⚙️ Technologies Used
 
-- 🐍 Python 3.x
-- 📊 Pandas, NumPy
+- 🐍 Python 3.x, json
+- 📊 Pandas, NumPy,sckitlearn
 - 🎨 Matplotlib, Seaborn
 - 🧠 Jupyter Notebook
+  
 
 ---
 
@@ -107,18 +141,18 @@ fraud-detection-project/
 2. 🔧 Install dependencies:
    ```bash
    pip install -r requirements.txt
+   pip install json
    ```
 
 3. ▶️ Launch the notebook:
    ```bash
    jupyter notebook data_analysis.ipynb
+   jupyter notebook feature_engineering.ipynb
    ```
-
 ---
 
 ## 📌 Next Steps
 
-- 🏗️ Feature engineering (e.g., recency-weighted risk scores)
 - 🤖 Build fraud classification models: Logistic Regression, XGBoost, etc.
 - 📈 Evaluate metrics: Precision, Recall, AUC-ROC
 - 🌐 Deploy via API or real-time scoring service
