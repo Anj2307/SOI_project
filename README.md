@@ -91,10 +91,10 @@ We enhanced the dataset to better represent risk factors:
 - Standardized and log-transformed: `velocity_6h`, `velocity_8h`, `velocity_1w`
 - Created `velocity_risk_score` with `weights` saved to `weight_map(2).json`.
 
-### 4: 📍 Standerdize the data
+### 4: ✏️ Standardized the data
 
 - Transformed: `Data is transformed or scaled in all categories`
-### 5: 📐 Create test and train datasets for model creation
+### 5: 🖊️ Create test and train datasets for model creation
 
 - `Have created train_test_split data`
 ---
