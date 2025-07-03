@@ -73,7 +73,7 @@ Welcome to a complete exploratory data analysis (EDA) project aimed at uncoverin
 🖼️ All charts are embedded in [`data_analysis.ipynb`](./data_analysis.ipynb)
 
 ---
-## 🧱 Feature Engineering
+# 🧱 Feature Engineering
 
 We enhanced the dataset to better represent risk factors:
 
