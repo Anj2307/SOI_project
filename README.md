@@ -170,7 +170,7 @@ If you have new analysis ideas or want to improve modeling, feel free to contrib
 
 Developed by: **Anubhav Goyal**  
 🎓 B.Tech (Mathematics and Computing) @ IIT Dharwad  
-📬 GitHub: [@Anj2307](https://github.com/Anj2307.           
+📬 GitHub: [@Anj2307](https://github.com/Anj2307).           
 📨 Email:
 [MC24BT005](MC24BT005@iitdh.ac.in)
 
