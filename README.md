@@ -98,7 +98,7 @@ We enhanced the dataset to better represent risk factors:
 
 - `Have created train_test_split data`
 ---
-All feature engineering code are embedded in [`feature engineering`](./feature_engineering.ipynb)
+All feature engineering code are embedded in [`feature engineering`](./feature_Engineering.ipynb)
 ## 📁 Project Structure
 
 ```
