@@ -143,19 +143,6 @@ fraud_detect/
 * 📓 [`lightGBM.ipynb`](./notebooks/lightGBM.ipynb)
 
 ---
-
-## 🧾 Overall Results Summary
-
-| Model         | Precision | Recall | F1-Score | ROC-AUC |
-|---------------|-----------|--------|----------|---------|
-| Logistic Reg. | 0.78      | 0.63   | 0.70     | 0.88    |
-| XGBoost       | 0.91      | 0.84   | 0.87     | 0.97    |
-| LightGBM      | 0.90      | 0.86   | 0.88     | 0.96    |
-
-✅ XGBoost and LightGBM performed the best with strong recall and low false positives.
-
----
-
 ## 🔧 Upcoming Improvements
 
 * Cross-validation for robustness
