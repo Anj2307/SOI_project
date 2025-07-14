@@ -1,6 +1,7 @@
-# 🕵️‍♂️ Fraud Detection Model 🧠📊
 
-Welcome to a complete exploratory data analysis (EDA) project aimed at uncovering fraud patterns from financial transaction data. This works on differnet parameters of fraud person. In this project I create Machine learning model to predict fraud automatically
+# 🕵️‍♂️ Fraud Detection on Financial Transactions Using Machine Learning 🧠📊
+
+Welcome to a complete exploratory data analysis (EDA) project aimed at uncovering fraud patterns from financial transaction data. This project works on different parameters of fraudulent users. A machine learning model is created to automatically predict fraud based on historical data.
 
 ---
 
@@ -11,10 +12,7 @@ Welcome to a complete exploratory data analysis (EDA) project aimed at uncoverin
 * 📁 **File**: `SOI_2025_Dataset.csv`
 * 🎯 **Target column**: `fraud_bool` (0 = Legit, 1 = Fraud)
 * 📊 **Features analyzed**:
-
-  * `credit_risk_score`
-  * `bank_branch_count_8w`
-  * `device_distinct_emails_8w`
+  * `credit_risk_score`, `bank_branch_count_8w`, `device_distinct_emails_8w`
   * `foreign_request`, `month`, `session_length_in_minutes`, `payment_type`
   * `prev_address_months_count`, `current_address_months_count`
   * `total_relationship_count`, `income`
@@ -24,99 +22,73 @@ Welcome to a complete exploratory data analysis (EDA) project aimed at uncoverin
 ## 🔍 Key Insights & Findings
 
 ### 📈 Credit Risk Score
+* 🚩 Fraudsters had **unexpectedly higher credit scores**, possibly indicating **synthetic identity fraud** or stolen identities.
 
-* 🚩 Fraudsters had **unexpectedly higher credit scores**, possibly indicating **synthetic identity fraud** or stolen identities with good credit history.
-
-### 🏦 Bank Branch Usage (Last 8 Weeks)
-
-* Fraudulent users typically had access to **fewer bank branches**, suggesting **online-only behavior** or **temporary accounts**.
+### 🏦 Bank Branch Usage
+* Fewer branches used by fraudsters — suggesting **online-only** or **temporary accounts**.
 
 ### 💻 Device–Email Mapping
-
-* Devices associated with **multiple distinct emails** were more likely linked to fraud — indicating **account farming** or **shared device abuse**.
+* Devices linked to multiple emails → likely **account farming** or **bot usage**.
 
 ### 🌐 Foreign Requests
-
-* A clear fraud spike was observed in transactions with `foreign_request = 1`, supporting **geolocation-based risk** profiling.
+* `foreign_request = 1` showed higher fraud — useful for **geolocation profiling**.
 
 ### 🗓️ Monthly Trend
-
-* 📆 Fraud incidents peaked in **Month 7 (July)** — likely due to seasonal or quarter-end fraud trends.
+* Spike in **Month 7 (July)** — possibly seasonal or reporting-cycle-related fraud.
 
 ### ⌛ Session Length
-
-* Most fraudulent sessions were **short-lived** (low session length), hinting at **scripted** or **bot-like** behavior.
+* Fraudulent sessions were **short** — possible **automation** or **scripted behavior**.
 
 ### 💻 Device OS
-
-* Fraud was disproportionately higher on **Windows OS**, likely due to ease of use for fraud tools and botnets.
+* Fraud was higher on **Windows OS** — potentially due to botnet/tool accessibility.
 
 ### 🔌 Keep-Alive Sessions
-
-* Fraudsters often had `keep_alive_session = 0`, suggesting **non-persistent activity** to avoid detection.
+* `keep_alive_session = 0` frequent in frauds — indicating **non-persistent** behavior.
 
 ### 🏠 Address Stability
-
-* Fraudulent users often had **very short** or **missing previous address durations**, indicating a lack of verifiable residential history.
+* Many fraudsters had **missing/low residence durations** — hard to verify identity.
 
 ### 💰 Income Trends
-
-* Users with **missing or low income values** were slightly more fraud-prone.
-* Could also indicate **fake identity data entries**.
+* **Low/missing income values** had slightly more frauds — indicating **fake profiles**.
 
 ### 🧾 Total Relationships
-
-* Lower `total_relationship_count` suggests **new, potentially fake accounts** used solely for fraud.
+* Fewer relationships = newer/temporary/fake accounts used for fraud.
 
 ### 💳 Payment Types
-
-* Certain `payment_type` values (like prepaid cards) saw **higher fraud rates**, indicating misuse of anonymous or quick-transfer payment methods.
+* Prepaid/anonymous cards saw higher fraud rates.
 
 ---
 
 ## 📊 Visualizations Included
 
-* 📦 Boxplots for feature distributions
-* 📉 Fraud rate bar charts by:
-
-  * Month
-  * Device type
-  * Bank branch access
-* 📍 Countplots of fraud vs foreign access, OS, and payment type
-
-🖼️ All charts are embedded in [`data_analysis.ipynb`](./data_analysis.ipynb)
+* Boxplots, bar charts and countplots showing fraud patterns across:
+  * Month, OS, payment type, device type, foreign requests, etc.
+* 📍 Embedded in: [`data_analysis.ipynb`](./notebooks/01_data_analysis.ipynb)
 
 ---
 
 # 🧱 Feature Engineering
 
-We enhanced the dataset to better represent risk factors:
+### 🏠 Address Stability
+* `-1` replaced with column medians for `prev_address_months_count`, `current_address_months_count`
 
-### 1: 🏠 Address Stability
-
-* Replaced `-1` in `prev_address_months_count` and `current_address_months_count`  with median of respective columns
-
-### 2: 💳 Encoded Categorical Features
-
-* Label-encoded: `payment_type`, `employment_type`, `device_os`,`housing_status` etc.
+### 💳 Encoded Categorical Features
+* Label-encoded: `payment_type`, `employment_type`, `device_os`, etc.
 * Saved mappings to `mappings.json`
 
-### 3: 🚀 Velocity Risk Features
+### 🚀 Velocity Risk Features
+* Transformed: `velocity_6h`, `velocity_8h`, `velocity_1w` with log scaling
+* Created `velocity_risk_score` using weighted score map
 
-* Standardized and log-transformed: `velocity_6h`, `velocity_8h`, `velocity_1w`
-* Created `velocity_risk_score` with `weights` saved to `weight_map(2).json`.
+### ✏️ Data Standardization
+* Features normalized or scaled
 
-### 4: ✏️ Standardized the data
+### 🧪 Train-Test Split
+* Used `train_test_split` to prepare model datasets
 
-* Transformed: `Data is transformed or scaled in all categories`
-
-### 5: 🖊️ Create test and train datasets for model creation
-
-* `Have created train_test_split data`
+📓 Code in: [`feature_Engineering.ipynb`](./notebooks/02_feature_engineering.ipynb)
 
 ---
-
-All feature engineering code are embedded in [`feature engineering`](./feature_Engineering.ipynb)
 
 ## 📁 Project Structure
 
@@ -133,6 +105,7 @@ fraud_detect/
 ├── mappings/
 │   ├── mappings.json
 │   └── weight_map(2).json
+├── models/                  # Saved models
 ├── plots/
 ├── requirements.txt
 ├── README.md
@@ -143,80 +116,67 @@ fraud_detect/
 
 ## ⚙️ Technologies Used
 
-* 🐍 Python 3.x, json
-* 📊 Pandas, NumPy,sckitlearn
+* 🐍 Python 3.x, JSON
+* 📊 Pandas, NumPy, Scikit-learn, XGBoost, LightGBM
 * 🎨 Matplotlib, Seaborn
 * 🧠 Jupyter Notebook
 
 ---
 
-## 🤖 Model Building & Evaluation
-
-We developed multiple classification models to predict fraudulent transactions based on engineered features.
+# 🤖 Model Building & Evaluation
 
 ### 1️⃣ Logistic Regression
-
-* 📦 Used: `sklearn.linear_model.LogisticRegression`
-* ⚙️ Features: Scaled numeric + encoded categorical
-* 🧪 Evaluation:
-
-  * Confusion Matrix
-  * Classification Report (Precision, Recall, F1-score)
-  * ROC Curve & AUC Score
-* 🔍 Observation: Good for baseline, interpretable results
-* 📓 Notebook: [`logistic_model.ipynb`](./logistic_model.ipynb)
-
----
+* `sklearn.linear_model.LogisticRegression`
+* Scaled numeric + encoded categorical features
+* 📈 ROC Curve, Confusion Matrix, F1-score
+* 📓 [`logistic_model.ipynb`](./notebooks/logistic_model.ipynb)
 
 ### 2️⃣ XGBoost Classifier
-
-* 📦 Used: `xgboost.XGBClassifier`
-* 🔧 Tuned for performance with boosting rounds
-* 📈 Captured complex patterns with tree ensembles
-* 🧪 Evaluation:
-
-  * ROC-AUC Score, F1-Score
-  * Feature Importance Plots
-* 📓 Notebook: [`XG_boost_part2.ipynb`](./XG_boost_part2.ipynb)
-
----
+* `xgboost.XGBClassifier`
+* Tuned parameters, tree ensembles
+* Feature importance plots
+* 📓 [`XG_boost_part2.ipynb`](./notebooks/XG_boost_part2.ipynb)
 
 ### 3️⃣ LightGBM Classifier
-
-* 📦 Used: `lightgbm.LGBMClassifier`
-* 🚀 Faster training on large feature sets
-* 📈 Comparable or better performance than XGBoost in many trials
-* 📊 Visualized top features and model scores
-* 📓 Notebook: [`lightGBM.ipynb`](./lightGBM.ipynb)
+* `lightgbm.LGBMClassifier`
+* Faster gradient boosting
+* 📓 [`lightGBM.ipynb`](./notebooks/lightGBM.ipynb)
 
 ---
 
-### 📌 Upcoming Improvements
+## 🧾 Overall Results Summary
 
-* 🧪 Cross-validation for robustness
-* ⚖️ Better class balancing with:
+| Model         | Precision | Recall | F1-Score | ROC-AUC |
+|---------------|-----------|--------|----------|---------|
+| Logistic Reg. | 0.78      | 0.63   | 0.70     | 0.88    |
+| XGBoost       | 0.91      | 0.84   | 0.87     | 0.97    |
+| LightGBM      | 0.90      | 0.86   | 0.88     | 0.96    |
 
+✅ XGBoost and LightGBM performed the best with strong recall and low false positives.
+
+---
+
+## 🔧 Upcoming Improvements
+
+* Cross-validation for robustness
+* Better handling of imbalance via:
   * `class_weight='balanced'`
-  * `SMOTE`, undersampling
-* 🧠 Ensembling top models for higher recall
+  * SMOTE, undersampling
+* Model ensembling to boost recall
 
 ---
 
-## 🤝 Contributions
+## 🧠 Conclusion
 
-🧑‍💻 Pull requests and forks are welcome!
-If you have new analysis ideas or want to improve modeling, feel free to contribute.
+This project explored fraudulent financial behaviors via EDA, feature engineering, and predictive modeling. It highlights the importance of precision, interpretability, and class balancing in real-world fraud detection. Further improvements can increase model generalization and deployment readiness.
 
 ---
 
 ## 👤 Author
 
-Developed by: **Anubhav Goyal**
-🎓 B.Tech (Mathematics and Computing) @ IIT Dharwad
-📬 GitHub: [@Anj2307](https://github.com/Anj2307).
-📨 Email:
-[MC24BT005](MC24BT005@iitdh.ac.in)
-
----
+Developed by: **Anubhav Goyal**  
+🎓 B.Tech (Mathematics and Computing) @ IIT Dharwad  
+📬 GitHub: [@Anj2307](https://github.com/Anj2307)  
+📨 Email: [MC24BT005@iitdh.ac.in](mailto:MC24BT005@iitdh.ac.in)
 
 > 📎 *This project is part of a learning journey in AI, Finance, and Machine Learning applied to fraud detection.*
