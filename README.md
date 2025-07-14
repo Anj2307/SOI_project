@@ -191,29 +191,6 @@ We developed multiple classification models to predict fraudulent transactions b
 
 ---
 
-
-## 🚀 How to Launch This Project
-
-Get started in 4 quick steps:
-
-### 1. 📥 Clone the Repository
-```bash
-git clone https://github.com/Anj2307/fraud_detect.git
-cd fraud_detect
-pip install -r requirements.txt
-jupyter notebook
-4. 📊 Open These Files:
-notebooks/01_data_analysis.ipynb
-
-notebooks/02_feature_engineering.ipynb
-
-notebooks/logistic_model.ipynb
-
-notebooks/lightGBM.ipynb
-
-notebooks/XG_boost_part2.ipynb
-
-
 ### 📌 Upcoming Improvements
 
 * 🧪 Cross-validation for robustness
